@@ -1,0 +1,15 @@
+{
+  "name": "ПВЗ на Тищенко",
+  "short_name": "ПВЗ",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#e9ede4",
+  "theme_color": "#4a7c59",
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192/4a7c59/ffffff?text=ПВЗ",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
