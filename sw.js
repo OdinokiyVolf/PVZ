@@ -1,8 +1,9 @@
-const CACHE_NAME = 'pvz-v2';
+const CACHE_NAME = 'pvz-site-v1';
 const ASSETS = [
   'index.html',
   'style.css',
-  'manifest.json'
+  'manifest.json',
+  'logo.png'
 ];
 
 self.addEventListener("install", (event) => {
