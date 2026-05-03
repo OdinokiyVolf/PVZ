@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ПВЗ</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body {font-family:Arial;background:#dcd7cf;text-align:center;}
+.container {max-width:500px;margin:auto;padding:20px;}
+.btn {border:2px solid #5e7c63;padding:15px;margin:10px;border-radius:10px;cursor:pointer;}
+.admin {position:fixed;bottom:20px;right:20px;}
+.admin-panel {display:none;position:fixed;bottom:70px;right:20px;background:white;padding:15px;}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>ПВЗ на Тищенко, 2</h2>
+
+  <div class="btn" onclick="clickLink('ozon','https://ozon.ru/point/1402634')">Озон</div>
+  <div class="btn" onclick="clickLink('wb','https://dzen.ru/a/aeh5mmCZ_2Jl9kNS?share_to=link')">WB</div>
+  <div class="btn" onclick="clickLink('return','https://dzen.ru/a/aei7_9gcLjiKbk3D?share_to=link')">Возврат</div>
+</div>
+
+<div class="admin">
+  <button onclick="toggle()">⚙️</button>
+</div>
+
+<div class="admin-panel" id="panel">
+  <h3>Статистика</h3>
+  <div id="stats"></div>
+  <canvas id="chart"></canvas>
+</div>
+
+<script>
+
+async function clickLink(id, url){
+  await fetch("/api/click", {
+    method:"POST",
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({id})
+  });
+  window.open(url);
+}
+
+// получить статистику
+async function loadStats(){
+  const res = await fetch("/api/stats");
+  const data = await res.json();
+
+  let stats = {ozon:0, wb:0, return:0};
+
+  data.forEach(i => stats[i.id] = i.count);
+
+  document.getElementById("stats").innerHTML = `
+    Озон: ${stats.ozon}<br>
+    WB: ${stats.wb}<br>
+    Возврат: ${stats.return}
+  `;
+
+  drawChart(stats);
+}
+
+let chart;
+function drawChart(stats){
+  if(chart) chart.destroy();
+
+  chart = new Chart(document.getElementById("chart"), {
+    type: "bar",
+    data: {
+      labels:["Озон","WB","Возврат"],
+      datasets:[{data:[stats.ozon,stats.wb,stats.return]}]
+    },
+    options:{plugins:{legend:{display:false}}}
+  });
+}
+
+function toggle(){
+  let p = document.getElementById("panel");
+  p.style.display = p.style.display==="block"?"none":"block";
+  loadStats();
+}
+
+// PWA
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('sw.js');
+}
+
+</script>
+</body>
+</html>
