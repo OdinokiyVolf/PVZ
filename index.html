@@ -1,90 +1,36 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ПВЗ</title>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ПВЗ на Тищенко, 2</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4a7c59">
 </head>
-
 <body>
+    <div class="main-container">
+        <div class="card">
+            <h1 class="title">ПВЗ на Тищенко, 2</h1>
+            
+            <div class="button-group">
+                <button class="menu-button" onclick="location.href='#'">Адрес пункта Озон</button>
+                <button class="menu-button" onclick="location.href='#'">Как заказывать товары с WB?</button>
+                <button class="menu-button" onclick="location.href='#'">Как оформить возврат товаров?</button>
+            </div>
+        </div>
+    </div>
 
-<div class="container">
-  <h2>ПВЗ на Тищенко, 2</h2>
+    <button class="settings-fab">
+        <img src="https://img.icons8.com/ios-glyphs/30/ffffff/settings--v1.png" alt="Settings">
+    </button>
 
-  <div class="btn" onclick="clickLink('ozon','https://ozon.ru/point/1402634')">Адрес пункта Озон</div>
-  <div class="btn" onclick="clickLink('wb','https://dzen.ru/a/aeh5mmCZ_2Jl9kNS?share_to=link')">Как заказывать товары с WB?</div>
-  <div class="btn" onclick="clickLink('return','https://dzen.ru/a/aei7_9gcLjiKbk3D?share_to=link')">Как оформить возврат товаров?</div>
-</div>
-
-<div class="admin">
-  <button onclick="toggle()">⚙️</button>
-</div>
-
-<div class="admin-panel" id="panel">
-  <h3>Статистика</h3>
-  <div id="stats"></div>
-  <canvas id="chart"></canvas>
-</div>
-
-<script>
-
-async function clickLink(id, url){
-  await fetch("/api/click", {
-    method:"POST",
-    headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({id})
-  });
-  window.open(url);
-}
-
-// получить статистику
-async function loadStats(){
-  const res = await fetch("/api/stats");
-  const data = await res.json();
-
-  let stats = {ozon:0, wb:0, return:0};
-
-  data.forEach(i => stats[i.id] = i.count);
-
-  document.getElementById("stats").innerHTML = `
-    Озон: ${stats.ozon}<br>
-    WB: ${stats.wb}<br>
-    Возврат: ${stats.return}
-  `;
-
-  drawChart(stats);
-}
-
-let chart;
-function drawChart(stats){
-  if(chart) chart.destroy();
-
-  chart = new Chart(document.getElementById("chart"), {
-    type: "bar",
-    data: {
-      labels:["Озон","WB","Возврат"],
-      datasets:[{data:[stats.ozon,stats.wb,stats.return]}]
-    },
-    options:{plugins:{legend:{display:false}}}
-  });
-}
-
-function toggle(){
-  let p = document.getElementById("panel");
-  p.style.display = p.style.display==="block"?"none":"block";
-  loadStats();
-}
-
-// PWA
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('sw.js');
-}
-
-</script>
+    <script src="sw.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(() => console.log("PWA зарегистрирован"));
+        }
+    </script>
 </body>
 </html>
