@@ -27,6 +27,7 @@ body {
 .main-container {
   width: 100%;
   max-width: 450px;
+  margin: 0 auto;
 }
 
 .card {
@@ -40,12 +41,16 @@ body {
 .avatar {
   width: 90px;
   margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .title {
   color: var(--text-main);
   font-size: 22px;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .subtitle {
@@ -53,12 +58,14 @@ body {
   font-size: 14px;
   font-style: italic;
   margin-bottom: 30px;
+  text-align: center;
 }
 
 .button-group {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  align-items: center;
 }
 
 /* Единый стиль для всех кнопок */
@@ -77,6 +84,8 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(74, 124, 89, 0.2);
+  width: 100%;
+  max-width: 280px;
 }
 
 .menu-button:hover {
@@ -90,7 +99,7 @@ body {
   display: none;
 }
 
-/* Стили модального окна iOS — выезжает снизу */
+/* Стили модального окна iOS — выезжает снизу, центрировано по содержимому */
 #ios-modal-overlay {
   display: none;
   position: fixed;
@@ -112,6 +121,7 @@ body {
   background: white;
   width: 100%;
   max-width: 500px;
+  margin: 0 auto;
   padding: 28px 24px 32px;
   border-radius: 28px 28px 0 0;
   text-align: center;
@@ -125,16 +135,18 @@ body {
   margin-bottom: 12px;
   font-size: 20px;
   font-weight: 650;
+  text-align: center;
 }
 
 #ios-hint > p {
   color: #555;
   font-size: 15px;
   margin-bottom: 16px;
+  text-align: center;
 }
 
 .ios-steps {
-  text-align: left;
+  text-align: center;
   background: #f8f9fa;
   padding: 20px 24px;
   border-radius: 20px;
@@ -146,8 +158,10 @@ body {
   font-size: 15px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   flex-wrap: wrap;
+  text-align: center;
 }
 
 .ios-steps p:last-child {
@@ -175,6 +189,7 @@ body {
   margin-top: 8px;
   color: var(--primary);
   animation: bounce 1s infinite;
+  text-align: center;
 }
 
 #ios-hint-close {
@@ -215,5 +230,29 @@ body {
   }
   50% {
     transform: translateY(6px);
+  }
+}
+
+/* Адаптация для маленьких экранов */
+@media (max-width: 480px) {
+  .card {
+    padding: 30px 20px;
+  }
+  
+  .menu-button {
+    max-width: 100%;
+  }
+  
+  #ios-hint {
+    padding: 24px 20px 28px;
+  }
+  
+  .ios-steps {
+    padding: 16px;
+  }
+  
+  .ios-steps p {
+    flex-direction: column;
+    gap: 6px;
   }
 }
