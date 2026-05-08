@@ -92,10 +92,13 @@ body {
 /* СТИЛИ PWA (ПЕРЕНЕСЕНЫ ИЗ HTML) */
 #install-banner {
   display: none;
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  /* Убираем fixed и ставим margin для отступа сверху */
+  position: relative; 
+  margin-top: 20px;
+  left: auto;
+  transform: none;
+  
+  /* Остальные стили оставляем для внешнего вида */
   z-index: 1000;
   background: var(--primary);
   color: #fff;
@@ -105,12 +108,16 @@ body {
   font-size: 16px;
   font-family: inherit;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
   white-space: nowrap;
-  animation: slideUp 0.3s ease;
 }
 
-#install-banner.visible { display: flex; align-items: center; gap: 10px; }
+/* При появлении кнопка будет центрироваться как обычный блок */
+#install-banner.visible { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 10px; 
+}
 
 #ios-hint {
   display: none;
