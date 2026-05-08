@@ -22,23 +22,62 @@
   <noscript><div><img src="https://mc.yandex.ru/watch/109024144" style="position:absolute;left:-9999px;" alt=""></div></noscript>
 </head>
 <body>
-  <div class="main-container">
+  <!-- Окно загрузки -->
+  <div id="loading-screen">
+    <div class="loader-container">
+      <div class="loader"></div>
+      <div class="loader-text">Загрузка...</div>
+      <div class="loader-subtext">ПВЗ на Тищенко, 2</div>
+    </div>
+  </div>
+
+  <div class="main-container" id="main-content">
     <div class="card">
-      <img src="logo.png" alt="Логотип ПВЗ" class="avatar">
+      <div class="avatar-wrapper">
+        <img src="logo.png" alt="Логотип ПВЗ" class="avatar">
+      </div>
       <h1 class="title">ПВЗ на Тищенко, 2</h1>
       <p class="subtitle">Для лучшего качества скриншотов открывайте инструкции через компьютер</p>
       <div class="button-group">
-        <a href="https://ozon.ru/point/1402634" target="_blank" rel="noopener noreferrer" class="menu-button">📍 Адрес пункта Озон</a>
-        <a href="https://dzen.ru/a/aeh5mmCZ_2Jl9kNS?share_to=link" target="_blank" rel="noopener noreferrer" class="menu-button">📦 Как заказать товары с WB?</a>
-        <a href="https://dzen.ru/a/aei7_9gcLjiKbk3D?share_to=link" target="_blank" rel="noopener noreferrer" class="menu-button">🔄 Как оформить возврат товаров?</a>
+        <a href="https://ozon.ru/point/1402634" target="_blank" rel="noopener noreferrer" class="menu-button">
+          <span class="btn-icon">📍</span>
+          <span class="btn-text">Адрес пункта Озон</span>
+        </a>
+        <a href="https://dzen.ru/a/aeh5mmCZ_2Jl9kNS?share_to=link" target="_blank" rel="noopener noreferrer" class="menu-button">
+          <span class="btn-icon">📦</span>
+          <span class="btn-text">Как заказать товары с WB?</span>
+        </a>
+        <a href="https://dzen.ru/a/aei7_9gcLjiKbk3D?share_to=link" target="_blank" rel="noopener noreferrer" class="menu-button">
+          <span class="btn-icon">🔄</span>
+          <span class="btn-text">Как оформить возврат товаров?</span>
+        </a>
         <button id="install-banner" class="menu-button" aria-label="Установить приложение">
-          📲 Установить на экран
+          <span class="btn-icon">📲</span>
+          <span class="btn-text">Установить на экран</span>
         </button>
       </div>
     </div>
   </div>
 
+  <!-- Декоративные элементы -->
+  <div class="bg-decoration">
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+    <div class="circle circle-3"></div>
+  </div>
+
   <script>
+    // Окно загрузки
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const loadingScreen = document.getElementById('loading-screen');
+        loadingScreen.classList.add('fade-out');
+        setTimeout(() => {
+          loadingScreen.style.display = 'none';
+        }, 500);
+      }, 1500);
+    });
+
     // Service Worker
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js')
@@ -70,6 +109,20 @@
       installBtn.style.display = 'none';
       deferredPrompt = null;
       console.log('✅ PWA успешно установлено');
+    });
+
+    // Добавляем анимацию при появлении карточек
+    document.addEventListener('DOMContentLoaded', () => {
+      const card = document.querySelector('.card');
+      if (card) {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        setTimeout(() => {
+          card.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, 100);
+      }
     });
   </script>
 </body>
