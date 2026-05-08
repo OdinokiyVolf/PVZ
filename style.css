@@ -86,15 +86,12 @@ body {
 /* Единый стиль для всех кнопок */
 .menu-button {
   display: flex;
-  align-items: center;    /* Выравнивание по вертикали (центр) */
-  justify-content: center; /* Выравнивание по горизонтали (центр) */
+  align-items: center;
+  justify-content: center;
   text-align: center;
   background-color: var(--primary);
   color: white;
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 16px;
   border: none;
   border-radius: 14px;
@@ -105,12 +102,10 @@ body {
   box-shadow: 0 4px 10px rgba(74, 124, 89, 0.2);
   width: 100%;
   max-width: 280px;
-  text-align: center;
 }
 
 /* Специально для последней кнопки — гарантируем центрирование текста */
 .button-group .menu-button:last-child {
-  text-align: center;
   justify-content: center;
 }
 
