@@ -2,7 +2,7 @@
 :root {
   --primary: #4a7c59;          /* Темно-зеленый (со скриншота) */
   --primary-hover: #3d664a;    /* Цвет при наведении */
-  --bg-color: #e9ede4;         /* Фоновый цвет страницы */
+  --bg-color: #f5f3ee;         /* Обновленный фоновый цвет страницы (светло-бежевый) */
   --card-bg: #ffffff;          /* Цвет карточки */
   --text-main: #4a7c59;        /* Цвет заголовка */
   --text-muted: #666666;       /* Цвет подзаголовка */
@@ -28,15 +28,15 @@ body {
 /* Контейнер для ограничения ширины на ПК */
 .main-container {
   width: 100%;
-  max-width: 450px;
+  max-width: 480px; /* Немного увеличил ширину для большего пространства */
 }
 
 /* Стили основной карточки */
 .card {
   background: var(--card-bg);
-  padding: 40px 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  padding: 50px 40px; /* Увеличил отступы для «воздушности» */
+  border-radius: 25px; /* Более скругленные углы */
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08); /* Чуть более выраженная тень */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -45,10 +45,10 @@ body {
 
 /* Логотип ПВЗ */
 .avatar {
-  width: 120px;
-  height: 120px;
+  width: 100px; /* Уменьшил размер логотипа */
+  height: 100px;
   border-radius: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   object-fit: contain;
   background-color: white;
 }
@@ -56,18 +56,18 @@ body {
 /* Заголовок */
 .title {
   color: var(--text-main);
-  font-size: 24px;
-  margin-bottom: 8px;
-  font-weight: 500;
+  font-size: 28px; /* Немного увеличил заголовок */
+  margin-bottom: 10px;
+  font-weight: 600; /* Более жирный шрифт */
 }
 
 /* Подзаголовок о качестве скриншотов */
 .subtitle {
   color: var(--text-muted);
-  font-size: 14px;
-  line-height: 1.4;
-  margin-bottom: 30px;
-  max-width: 290px;
+  font-size: 15px; /* Чуть увеличил размер текста */
+  line-height: 1.5;
+  margin-bottom: 40px; /* Увеличил отступ до кнопок */
+  max-width: 320px;
 }
 
 /* Группа кнопок-ссылок */
@@ -75,29 +75,39 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 18px; /* Увеличил расстояние между кнопками */
 }
 
 /* Стилизация ссылок под кнопки */
 .menu-button {
   background-color: var(--primary);
   color: white;
-  text-decoration: none; /* Убираем подчеркивание */
-  display: block;
-  padding: 15px 20px;
-  border-radius: 12px;
-  font-size: 16px;
+  text-decoration: none;
+  display: flex; /* Используем flexbox для выравнивания текста и иконок */
+  justify-content: space-between; /* Распределяем элементы по краям */
+  align-items: center;
+  padding: 18px 25px; /* Увеличил отступы */
+  border-radius: 15px; /* Более скругленные углы */
+  font-size: 17px;
   font-weight: 500;
-  transition: background 0.3s ease, transform 0.1s ease;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Добавил плавные переходы */
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1); /* Добавил легкую тень */
 }
 
 /* Эффекты при наведении и нажатии */
 .menu-button:hover {
   background-color: var(--primary-hover);
+  transform: translateY(-2px); /* Кнопка немного приподнимается */
+  box-shadow: 0 8px 15px rgba(0,0,0,0.15); /* Тень становится более выраженной */
 }
 
 .menu-button:active {
   transform: translateY(1px);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+/* Стили для иконок внутри кнопок (если вы их добавите) */
+.menu-button i {
+  margin-left: 10px; /* Отступ для иконки справа */
+  font-size: 20px; /* Размер иконки */
 }
