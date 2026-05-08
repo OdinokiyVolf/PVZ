@@ -97,19 +97,33 @@ body {
 /* Кнопка установки скрыта по умолчанию */
 #install-banner {
   display: none;
-  text-align: center;
   justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 /* Разделитель между кнопками */
 .button-group {
   gap: 0;
+  position: relative;
+}
+
+.button-group > * {
+  margin-bottom: 0;
 }
 
 .button-group > * + * {
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(74, 124, 89, 0.15);
+  margin-top: 12px;
+}
+
+.button-group > * + *::before {
+  content: '';
+  display: block;
+  width: 80%;
+  height: 2px;
+  background: rgba(74, 124, 89, 0.35);
+  margin: 0 auto 12px;
+  border-radius: 2px;
 }
 
 /* Адаптация для маленьких экранов */
