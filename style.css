@@ -85,6 +85,10 @@ body {
 
 /* Единый стиль для всех кнопок */
 .menu-button {
+  display: flex;
+  align-items: center;    /* Выравнивание по вертикали (центр) */
+  justify-content: center; /* Выравнивание по горизонтали (центр) */
+  text-align: center;
   background-color: var(--primary);
   color: white;
   text-decoration: none;
