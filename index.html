@@ -19,8 +19,6 @@
   <meta name="msapplication-TileColor" content="#4a7c59">
   <meta name="theme-color" content="#4a7c59">
 
-  <script src="https://unpkg.com/lucide@latest"></script>
-
   <script>
     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
     m[i].l=1*new Date();
@@ -29,63 +27,65 @@
     (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
     ym(109024144, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
   </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/109024144" style="position:absolute;left:-9999px;" alt=""></div></noscript>
 </head>
 <body>
 
   <main class="main-container">
-    <div class="card">
+    <div class="content-wrapper">
       <img src="logo.png" alt="Логотип ПВЗ" class="avatar">
+      
       <h1 class="title">ПВЗ на Тищенко, 2</h1>
-      <p class="subtitle">Для лучшего качества скриншотов открывайте инструкции через компьютер</p>
+      <p class="subtitle">"Для лучшего качества скриншотов открывайте инструкции через компьютер"</p>
 
       <nav class="button-group">
         <a href="https://ozon.ru/point/1402634" target="_blank" rel="noopener noreferrer" class="menu-button">
-          <span>Адрес пункта Озон</span>
-          <i data-lucide="map-pin"></i>
+          Адрес пункта на Озон
         </a>
         <a href="https://dzen.ru/a/aeh5mmCZ_2Jl9kNS?share_to=link" target="_blank" rel="noopener noreferrer" class="menu-button">
-          <span>Как заказать на WB</span>
-          <i data-lucide="shopping-bag"></i>
+          Как заказать товары из Вайлдберриз?
         </a>
         <a href="https://dzen.ru/a/aei7_9gcLjiKbk3D?share_to=link" target="_blank" rel="noopener noreferrer" class="menu-button">
-          <span>Оформить возврат</span>
-          <i data-lucide="refresh-ccw"></i>
+          Как оформить возврат товаров?
         </a>
       </nav>
     </div>
   </main>
 
   <button id="install-banner" aria-label="Установить приложение">
-    <i data-lucide="download-cloud"></i>
-    <span>Установить на экран</span>
+    <span>📲</span> Установить на экран
   </button>
 
   <div id="ios-hint" role="dialog">
-    <button id="ios-hint-close">✕</button>
+    <button id="ios-hint-close" aria-label="Закрыть">✕</button>
     <p>Чтобы установить приложение на iPhone:</p>
     <div class="ios-arrow">⬆️</div>
-    <p>Нажмите <strong>«Поделиться»</strong>,<br> затем <strong>«На экран "Домой"»</strong></p>
+    <p>Нажмите <strong>«Поделиться»</strong> в Safari,<br> затем <strong>«На экран "Домой"»</strong></p>
   </div>
 
   <script>
-    // Инициализация иконок
-    lucide.createIcons();
-
-    // Service Worker
+    // ── Service Worker ──
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js').catch(console.error);
+      navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('PWA: Ready'))
+        .catch(err => console.error('PWA: Error', err));
     }
 
-    // Логика установки (iOS/Android)
+    // ── Логика установки (iOS) ──
     const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
-    const isInStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+    const isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 
-    if (isIos && !isInStandalone) {
-      setTimeout(() => document.getElementById('ios-hint').classList.add('visible'), 2000);
+    if (isIos && !isInStandaloneMode) {
+      setTimeout(() => {
+        document.getElementById('ios-hint').classList.add('visible');
+      }, 2000);
     }
 
-    document.getElementById('ios-hint-close').onclick = () => document.getElementById('ios-hint').classList.remove('visible');
+    document.getElementById('ios-hint-close').onclick = () => {
+      document.getElementById('ios-hint').classList.remove('visible');
+    };
 
+    // ── Логика установки (Android/Chrome) ──
     let deferredPrompt;
     const installBtn = document.getElementById('install-banner');
 
@@ -98,6 +98,7 @@
     installBtn.onclick = async () => {
       if (!deferredPrompt) return;
       deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
       deferredPrompt = null;
       installBtn.classList.remove('visible');
     };
