@@ -1,10 +1,8 @@
 :root {
-  --primary: #4a7c59;
-  --primary-hover: #3d664a;
-  --bg-color: #f5f3ee;
-  --card-bg: #ffffff;
-  --text-main: #2d4a35;
-  --text-muted: #6b7280;
+  --primary-text: #333333;
+  --accent-green: #4a7c59;
+  --bg-creme: #fcf9f6;
+  --text-muted: #666666;
 }
 
 * {
@@ -14,126 +12,118 @@
 }
 
 body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  background-color: var(--bg-color);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-creme);
+  color: var(--primary-text);
   display: flex;
   justify-content: center;
-  align-items: center;
   min-height: 100vh;
-  padding: 20px;
-  color: var(--text-main);
+  padding: 40px 20px;
 }
 
 .main-container {
   width: 100%;
-  max-width: 420px;
-  position: relative; /* Для правильного позиционирования */
+  max-width: 600px;
 }
 
-.card {
-  background: var(--card-bg);
-  padding: 40px 30px;
-  border-radius: 30px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  animation: fadeIn 0.8s ease-out;
-  position: relative;
-  z-index: 1;
 }
 
 .avatar {
-  width: 80px;
-  height: auto; /* Исправил для пропорций логотипа */
-  margin-bottom: 20px;
+  width: 50px;
+  height: auto;
+  margin-bottom: 15px;
 }
 
 .title {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 12px;
-  color: var(--primary);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
 }
 
 .subtitle {
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 13px;
   color: var(--text-muted);
   margin-bottom: 35px;
+  font-style: italic;
+  max-width: 90%;
 }
 
 .button-group {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
 }
 
 .menu-button {
-  background: var(--primary);
-  color: white;
+  background: transparent;
+  color: var(--primary-text);
   text-decoration: none;
-  padding: 16px 20px;
-  border-radius: 16px;
-  font-weight: 600;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 18px 20px;
+  border: 1.5px solid var(--accent-green);
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease-in-out;
 }
 
 .menu-button:hover {
-  background: var(--primary-hover);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(74, 124, 89, 0.3);
+  background-color: rgba(74, 124, 89, 0.05);
+  transform: translateY(-1px);
 }
 
-/* --- ИСПРАВЛЕНИЕ PWA ЭЛЕМЕНТОВ --- */
-
+/* Стили баннера установки (Android) */
 #install-banner {
-  display: none !important; /* Скрыто всегда по умолчанию */
+  display: none;
   position: fixed;
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
-  background: #1a1a1a;
+  background: var(--accent-green);
   color: white;
   border: none;
   border-radius: 50px;
-  padding: 12px 24px;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  cursor: pointer;
   z-index: 1000;
+  white-space: nowrap;
+}
+
+#install-banner.visible {
+  display: flex;
   align-items: center;
   gap: 10px;
 }
 
-/* Показываем только через класс .visible */
-#install-banner.visible { 
-  display: flex !important; 
-  animation: slideUp 0.4s ease; 
-}
-
+/* Стили подсказки (iOS) */
 #ios-hint {
-  display: none !important; /* Скрыто всегда по умолчанию */
+  display: none;
   position: fixed;
   bottom: 0; left: 0; right: 0;
   background: white;
-  padding: 25px;
-  border-radius: 25px 25px 0 0;
+  padding: 20px 20px 30px;
+  border-top: 2px solid var(--accent-green);
   text-align: center;
-  box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
-  z-index: 1001;
+  box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+  z-index: 2000;
 }
 
-#ios-hint.visible { 
-  display: block !important; 
-  animation: slideUp 0.4s ease; 
-}
+#ios-hint.visible { display: block; }
 
 #ios-hint-close {
   position: absolute;
-  top: 15px; right: 20px;
-  background: none; border: none; font-size: 20px;
+  top: 10px; right: 15px;
+  background: none; border: none; font-size: 20px; color: #ccc;
 }
 
 .ios-arrow { font-size: 30px; margin: 10px 0; }
-
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes slideUp { from { transform: translateX(-50%) translateY(100%); } to { transform: translateX(-50%) translateY(0); } }
