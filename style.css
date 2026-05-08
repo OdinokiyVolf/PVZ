@@ -1,103 +1,40 @@
-/* Переменные для удобной настройки цветов */
-:root {
-  --primary: #4a7c59;          /* Темно-зеленый (со скриншота) */
-  --primary-hover: #3d664a;    /* Цвет при наведении */
-  --bg-color: #e9ede4;         /* Фоновый цвет страницы */
-  --card-bg: #ffffff;          /* Цвет карточки */
-  --text-main: #4a7c59;        /* Цвет заголовка */
-  --text-muted: #666666;       /* Цвет подзаголовка */
+/* Обертка для всего проекта */
+.pickup-point {
+  font-family: Arial, sans-serif;
+  text-align: center; /* Центрируем текст */
+  color: orange; /* Основной цвет текста */
 }
 
-/* Обнуление отступов и базовая настройка шрифта */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  background-color: var(--bg-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-}
-
-/* Контейнер для ограничения ширины на ПК */
-.main-container {
-  width: 100%;
-  max-width: 450px;
-}
-
-/* Стили основной карточки */
-.card {
-  background: var(--card-bg);
-  padding: 40px 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Логотип ПВЗ */
-.avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 20px;
+/* Заголовки */
+.pickup-point h1,
+.pickup-point h2,
+.pickup-point h3 {
+  color: orange;
   margin-bottom: 20px;
-  object-fit: contain;
-  background-color: white;
 }
 
-/* Заголовок */
-.title {
-  color: var(--text-main);
-  font-size: 24px;
-  margin-bottom: 8px;
-  font-weight: 500;
-}
-
-/* Подзаголовок о качестве скриншотов */
-.subtitle {
-  color: var(--text-muted);
-  font-size: 14px;
-  line-height: 1.4;
-  margin-bottom: 30px;
-  max-width: 290px;
-}
-
-/* Группа кнопок-ссылок */
-.button-group {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-/* Стилизация ссылок под кнопки */
-.menu-button {
-  background-color: var(--primary);
-  color: white;
-  text-decoration: none; /* Убираем подчеркивание */
-  display: block;
-  padding: 15px 20px;
-  border-radius: 12px;
+/* Кнопки */
+.pickup-point button {
+  background-color: orange;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
   font-size: 16px;
-  font-weight: 500;
-  transition: background 0.3s ease, transform 0.1s ease;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  border-radius: 5px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-/* Эффекты при наведении и нажатии */
-.menu-button:hover {
-  background-color: var(--primary-hover);
+/* Анимация при наведении */
+.pickup-point button:hover {
+  transform: scale(1.1);
+  background-color: #ff9900;
 }
 
-.menu-button:active {
-  transform: translateY(1px);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+/* Текстовые блоки */
+.pickup-point p {
+  color: orange;
+  font-size: 18px;
+  line-height: 1.5;
 }
