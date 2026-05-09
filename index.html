@@ -9,13 +9,11 @@
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="logo.png" type="image/png">
 
-  <!-- Apple / iOS: без этих тегов Safari не предложит «Добавить на экран» -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="ПВЗ Тищенко">
   <link rel="apple-touch-icon" href="logo.png">
 
-  <!-- Яндекс.Метрика -->
   <script>
     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
     m[i].l=1*new Date();
@@ -28,150 +26,157 @@
 </head>
 <body>
 
-  <!-- ЭКРАН ЗАГРУЗКИ (РАБОТАЕТ НА ANDROID) -->
-  <div id="loading-screen">
-    <div class="loader-container">
-      <div class="loader"></div>
-      <div class="loader-text">Загрузка...</div>
-      <div class="loader-subtext">ПВЗ на Тищенко, 2</div>
+<div id="loading-screen">
+  <div class="loader-container">
+    <div class="loader"></div>
+    <div class="loader-text">Загрузка...</div>
+    <div class="loader-subtext">ПВЗ на Тищенко, 2</div>
+  </div>
+</div>
+
+<div class="main-container" id="main-content">
+  <div class="card">
+    <div class="avatar-wrapper">
+      <img src="logo.png" alt="Логотип ПВЗ" class="avatar">
+    </div>
+    <h1 class="title">ПВЗ на Тищенко, 2</h1>
+    <p class="subtitle">Для лучшего качества скриншотов открывайте инструкции через компьютер</p>
+    <div class="button-group">
+      <a href="https://ozon.ru/point/1402634" target="_blank" rel="noopener noreferrer" class="menu-button">
+        <span class="btn-icon">📍</span>
+        <span class="btn-text">Адрес пункта Озон</span>
+      </a>
+      <a href="https://dzen.ru/a/aeh5mmCZ_2Jl9kNS?share_to=link" target="_blank" rel="noopener noreferrer" class="menu-button">
+        <span class="btn-icon">📦</span>
+        <span class="btn-text">Как заказать товары с WB?</span>
+      </a>
+      <a href="https://dzen.ru/a/aei7_9gcLjiKbk3D?share_to=link" target="_blank" rel="noopener noreferrer" class="menu-button">
+        <span class="btn-icon">🔄</span>
+        <span class="btn-text">Как оформить возврат товаров?</span>
+      </a>
+      <button id="install-banner" class="menu-button" aria-label="Установить приложение">
+        <span class="btn-icon">📲</span>
+        <span class="btn-text">Установить на экран</span>
+      </button>
     </div>
   </div>
+</div>
 
-  <!-- ОСНОВНОЙ КОНТЕНТ -->
-  <div class="main-container" id="main-content" style="opacity:0;">
-    <div class="card">
-      <div class="avatar-wrapper">
-        <img src="logo.png" alt="Логотип ПВЗ" class="avatar">
-      </div>
-      <h1 class="title">ПВЗ на Тищенко, 2</h1>
-      <p class="subtitle">Для лучшего качества скриншотов открывайте инструкции через компьютер</p>
-      <div class="button-group">
-        <a href="https://ozon.ru/point/1402634" target="_blank" rel="noopener noreferrer" class="menu-button">
-          <span class="btn-icon">📍</span>
-          <span class="btn-text">Адрес пункта Озон</span>
-        </a>
-        <a href="https://dzen.ru/a/aeh5mmCZ_2Jl9kNS?share_to=link" target="_blank" rel="noopener noreferrer" class="menu-button">
-          <span class="btn-icon">📦</span>
-          <span class="btn-text">Как заказать товары с WB?</span>
-        </a>
-        <a href="https://dzen.ru/a/aei7_9gcLjiKbk3D?share_to=link" target="_blank" rel="noopener noreferrer" class="menu-button">
-          <span class="btn-icon">🔄</span>
-          <span class="btn-text">Как оформить возврат товаров?</span>
-        </a>
-        <button id="install-banner" class="menu-button" aria-label="Установить приложение">
-          <span class="btn-icon">📲</span>
-          <span class="btn-text">Установить на экран</span>
-        </button>
-      </div>
+<div id="ios-modal-overlay">
+  <div id="ios-hint">
+    <button id="ios-hint-close" aria-label="Закрыть">✕</button>
+    <h3>📱 Установка на iPhone / iPad</h3>
+    <p>Чтобы сохранить этот сайт как приложение:</p>
+    <div class="ios-steps">
+      <p>1️⃣ Нажмите иконку <strong>«Поделиться»</strong> <span class="icon">⎔</span></p>
+      <p>2️⃣ Прокрутите вниз и выберите <strong>«На экран "Домой"»</strong> <span class="icon">⬚</span></p>
     </div>
+    <div class="arrow-down">⬆️</div>
   </div>
+</div>
 
-  <!-- МОДАЛЬНОЕ ОКНО ДЛЯ IOS (ИНСТРУКЦИЯ) -->
-  <div id="ios-modal-overlay">
-    <div id="ios-hint">
-      <button id="ios-hint-close" aria-label="Закрыть">✕</button>
-      <h3>📱 Установка на iPhone / iPad</h3>
-      <p>Чтобы сохранить этот сайт как приложение:</p>
-      <div class="ios-steps">
-        <p>1️⃣ Нажмите иконку <strong>«Поделиться»</strong> <span class="icon">⎔</span></p>
-        <p>2️⃣ Прокрутите вниз и выберите <strong>«На экран "Домой"»</strong> <span class="icon">⬚</span></p>
-      </div>
-      <div class="arrow-down">⬆️</div>
-    </div>
-  </div>
+<div class="bg-decoration">
+  <div class="circle circle-1"></div>
+  <div class="circle circle-2"></div>
+  <div class="circle circle-3"></div>
+</div>
 
-  <!-- Декоративные элементы фона -->
-  <div class="bg-decoration">
-    <div class="circle circle-1"></div>
-    <div class="circle circle-2"></div>
-    <div class="circle circle-3"></div>
-  </div>
-
-  <script>
-    // === 1. Окно загрузки (универсальное для Android и iOS) ===
-    window.addEventListener('load', function() {
+<script>
+  (function() {
+    // === 1. Надёжное скрытие загрузочного экрана ===
+    var loadingScreen = document.getElementById('loading-screen');
+    var mainContent = document.getElementById('main-content');
+    
+    function hideLoading() {
+      if (!loadingScreen) return;
+      loadingScreen.style.transition = 'opacity 0.5s ease';
+      loadingScreen.style.opacity = '0';
       setTimeout(function() {
-        var loadingScreen = document.getElementById('loading-screen');
-        var mainContent = document.getElementById('main-content');
-        
-        if (loadingScreen) {
-          loadingScreen.style.opacity = '0';
-          loadingScreen.style.visibility = 'hidden';
-          loadingScreen.style.transition = 'opacity 0.5s ease, visibility 0.5s ease';
-        }
+        loadingScreen.style.display = 'none';
         if (mainContent) {
           mainContent.style.opacity = '1';
-          mainContent.style.transition = 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+          mainContent.style.transform = 'translateY(0)';
         }
-      }, 1500);
-    });
+      }, 500);
+    }
+
+    if (document.readyState === 'complete') {
+      setTimeout(hideLoading, 1200);
+    } else {
+      window.addEventListener('load', function() {
+        setTimeout(hideLoading, 1200);
+      });
+    }
 
     // === 2. Service Worker ===
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js')
-        .then(() => console.log('✅ SW зарегистрирован'))
-        .catch(err => console.error('❌ Ошибка SW:', err));
+        .then(function(reg) { console.log('✅ SW зарегистрирован', reg); })
+        .catch(function(err) { console.error('❌ Ошибка SW:', err); });
     }
 
-    // === 3. Логика установки для Android (Chrome / Edge) ===
-    let deferredPrompt;
-    const installBtn = document.getElementById('install-banner');
+    // === 3. Установка на Android ===
+    var deferredPrompt = null;
+    var installBtn = document.getElementById('install-banner');
 
-    window.addEventListener('beforeinstallprompt', (e) => {
+    window.addEventListener('beforeinstallprompt', function(e) {
       e.preventDefault();
       deferredPrompt = e;
-      installBtn.style.display = 'flex';
+      if (installBtn) installBtn.style.display = 'flex';
     });
 
-    installBtn.onclick = async () => {
-      if (!deferredPrompt) return;
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      console.log('📲 Установка PWA:', outcome);
-      deferredPrompt = null;
-      installBtn.style.display = 'none';
-    };
+    if (installBtn) {
+      installBtn.addEventListener('click', async function() {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        var result = await deferredPrompt.userChoice;
+        console.log('📲 Установка PWA:', result.outcome);
+        deferredPrompt = null;
+        installBtn.style.display = 'none';
+      });
+    }
 
-    window.addEventListener('appinstalled', () => {
-      installBtn.style.display = 'none';
+    window.addEventListener('appinstalled', function() {
+      if (installBtn) installBtn.style.display = 'none';
       deferredPrompt = null;
       console.log('✅ PWA установлено');
     });
 
-    // === 4. Логика для iOS Safari (показываем модальное окно) ===
-    const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
-    const isInStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    // === 4. iOS инструкция ===
+    var isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    var isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 
-    if (isIos && !isInStandalone) {
-      setTimeout(() => {
-        const overlay = document.getElementById('ios-modal-overlay');
+    if (isIos && !isStandalone) {
+      setTimeout(function() {
+        var overlay = document.getElementById('ios-modal-overlay');
         if (overlay) overlay.classList.add('visible');
       }, 2000);
     }
 
-    // Закрытие модального окна iOS
-    const closeBtn = document.getElementById('ios-hint-close');
-    const overlay = document.getElementById('ios-modal-overlay');
+    var closeBtn = document.getElementById('ios-hint-close');
+    var overlay = document.getElementById('ios-modal-overlay');
     if (closeBtn) {
-      closeBtn.onclick = () => {
+      closeBtn.addEventListener('click', function() {
         if (overlay) overlay.classList.remove('visible');
-      };
+      });
     }
     if (overlay) {
-      overlay.onclick = (e) => {
+      overlay.addEventListener('click', function(e) {
         if (e.target === overlay) overlay.classList.remove('visible');
-      };
+      });
     }
 
-    // Плавное появление карточки (если не сработало из загрузки)
-    document.addEventListener('DOMContentLoaded', function() {
-      const mainContent = document.getElementById('main-content');
+    // === 5. Принудительное отображение контента на всякий случай ===
+    setTimeout(function() {
       if (mainContent && mainContent.style.opacity !== '1') {
-        setTimeout(function() {
-          mainContent.style.opacity = '1';
-        }, 100);
+        mainContent.style.opacity = '1';
+        mainContent.style.transform = 'translateY(0)';
       }
-    });
-  </script>
+      if (loadingScreen && loadingScreen.style.display !== 'none') {
+        loadingScreen.style.display = 'none';
+      }
+    }, 3000);
+  })();
+</script>
 </body>
 </html>
